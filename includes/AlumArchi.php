@@ -20,7 +20,7 @@
                 <input required="" type="file" name="subir"  accept="application/pdf" />
               </label>    
 </div>
-          <button class="btn btn-success" type="submit" >Cargar Fichero</button>
+          <button class="btn btn-success" type="submit" >Subir Archivo</button>
           </form>
         </div>
         <div class="col-lg-6"> </div>
@@ -30,7 +30,7 @@
 <?php
   
   $idUsuario = $_SESSION['id'];
-  $sql = "SELECT archivos.id_archivo, archivos.nombre as nombreArchivo, archivos.ruta as RUTA, usuario.id , usuario.Nombre as nombreAlumno\n"
+  $sql = "SELECT archivos.id_archivo, archivos.nombre as nombreArchivo, archivos.Fecha as Fecha,archivos.ruta as RUTA, usuario.id , usuario.Nombre as nombreAlumno\n"
     . "FROM `t_archivos` as archivos INNER join alumno as usuario on archivos.id_alumno = usuario.id and archivos.id_alumno = $idUsuario;";
   
   $result = mysqli_query($conexion,$sql);
@@ -47,6 +47,8 @@
   <thead>
     <tr>
       <th width="70%">Nombre del Archivo</th>
+      <th width="13%">Fecha de subida</th>
+      
       <th width="13%">Descargar</th>
       <th width="10%">Eliminar</th>
     </tr>
@@ -56,12 +58,14 @@
   while($mostrar = mysqli_fetch_array($result)){
     $rutaDescarga = "../archivos/".$idUsuario."/".$mostrar['nombreArchivo'];
     $nombreArchivo = $mostrar['nombreArchivo'];
+    $Fecha = $mostrar['Fecha'];
     $idArchivo = $mostrar['id_archivo'];
 
 ?>
      <tr>
       <!-- DESCARGAR ARCHIVO--> 
       <td><?php echo $mostrar['nombreArchivo']; ?></td>
+      <td><?php echo $mostrar['Fecha']; ?></td>
       <td>
        <a href="<?php echo $rutaDescarga;?>"download="<?php $nombreArchivo?>" class="btn btn-info ">
       <i class="fas fa-file-download"></i>

@@ -23,8 +23,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav mr-auto ">
       <a class="nav-item nav-link" href="modificar.php">Alumnos</a>
-      <a class="nav-item nav-link" href="#">Archivos</a>
-      <a class="nav-item nav-link" href="modificar.php"></a>
+      <a class="nav-item nav-link" href="acercade.php">Acerca de</a>
     </div>
     <div>
     <a href="salir.php" class="btn btn-dark ">

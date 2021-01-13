@@ -23,6 +23,8 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav mr-auto ">
       <a class="nav-item nav-link" href="AlumArchi.php">Archivos</a>
+      <a class="nav-item nav-link" href="acerca.php">Acerca de</a>
+
     </div>
     <div>
     <a href="salir.php" class="btn btn-dark ">
