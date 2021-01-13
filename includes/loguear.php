@@ -1,37 +1,34 @@
-
-
-<?php
-
-require "conexion.php";
+<?php include "conexion.php";
 session_start();
 $matricula = $_POST['matricula'];
 $contrasena = $_POST['contrasena'];
-
-
 $q = "SELECT  COUNT(*) as contar from alumno where matricula = '$matricula' and contrasena = '$contrasena' ";
 $sq = "SELECT  COUNT(*) as conta from ce where matricula = '$matricula' and contraseña = '$contrasena' ";
-
-
-
 $consulta = mysqli_query($conexion,$q);
 $array = mysqli_fetch_array($consulta);
-
 $pro = mysqli_query($conexion,$sq);
 $proy = mysqli_fetch_array($pro);
-
-
 if($array['contar']>0 ){
-    $_SESSION['username']= $matricula;
-    header("location: Bienvenido.php");
+    session_start();
+    $_SESSION['matricula']= $matricula;
+    $sqlid = "SELECT id FROM `alumno` where matricula = '$matricula' and contrasena = '$contrasena' ";
+    $consultaid = mysqli_query($conexion,$sqlid);
+    $idusuario = mysqli_fetch_row($consultaid)[0];
+    $_SESSION['id'] = $idusuario;
+    header("location: inicio.php");
 }else if($proy['conta']>0 )
 {
-    $_SESSION['username']= $matricula;
+    $_SESSION['matricula']= $matricula;
+    $sqlid = "SELECT id FROM `ce` where matricula = '$matricula' and contrasena = '$contrasena' ";
+    $consultid = mysqli_query($conexion,$sqlid);
+    $idusuario = mysqli_fetch_row($consultid);
+    $_SESSION['id'] = $id;
     header("location: index.php");
     
    
 }else{
 
-    header("location: HOME.php");
+    header("location: ../index.php");
 }
 
 

@@ -1,6 +1,5 @@
-<?php
-include 'conexion.php';
-
+<?php include 'conexion.php';
+    session_start();
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         $delete = "DELETE FROM `alumno` WHERE `id` = $id";
@@ -9,10 +8,10 @@ include 'conexion.php';
         if(!$consulta){
             die("query fail"); 
         }
-
-            $_SESSION['massage'] = 'Eliminación correcta :)';
-            $_SESSION['massage_type'] = 'danger';
-            header("location: modificar.php");
+    echo "<script>
+     alert('!Elimidado Correctamente!');
+     window.location= 'modificar.php'
+     </script>";
     }
 
 

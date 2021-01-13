@@ -1,5 +1,8 @@
+<?php
+    session_start();
+    if(isset($_SESSION['matricula'])){    
+?>
 <?php include 'conexion.php';
-
 if  (isset($_GET['id'])) {
     $id = $_GET['id'];
     $query = "SELECT * FROM alumno WHERE id = $id";
@@ -20,15 +23,30 @@ if(isset($_POST['update'])){
     $matricula = $_POST['matricula'];
     $contrasena = $_POST['Contrasena'];
     $carrera = $_POST['Carrera'];
-    $query = "UPDATE `alumno` SET `Nombre` = '$nombre', `Matricula` = '$matricula', `Contrasena` = '$contrasena' , `Carrera`= '$carrera' WHERE id=$id";
+    if($carrera == 'ISC'){
+      $query = "UPDATE `alumno` SET `Nombre` = '$nombre', `Matricula` = '$matricula', `Contrasena` = '$contrasena' , `Carrera`= '$carrera' WHERE id=$id";
      mysqli_query($conexion, $query);
-    
-    
-     $_SESSION['massage'] = 'Actualizado correctamente :)';
-    $_SESSION['massage_type'] = 'success';
-    header('Location: modificar.php');
-}
+     echo "<script>
+     alert('!Actualizado Correctamente :)!');
+     window.location= 'modificar.php'
+     </script>";
+    }else if($carrera == 'IMA'){
+      $query = "UPDATE `alumno` SET `Nombre` = '$nombre', `Matricula` = '$matricula', `Contrasena` = '$contrasena' , `Carrera`= '$carrera' WHERE id=$id";
+     mysqli_query($conexion, $query);
+     echo "<script>
+     alert('!Actualizado Correctamente :)!');
+     window.location= 'modificar.php.php'
+     </script>";
+    }else if($carrera=='IGE'){
+      $query = "UPDATE `alumno` SET `Nombre` = '$nombre', `Matricula` = '$matricula', `Contrasena` = '$contrasena' , `Carrera`= '$carrera' WHERE id=$id";
+     mysqli_query($conexion, $query);
+     echo "<script>
+     alert('!Actualizado Correctamente :)!');
+     window.location= 'modificar.php.php'
+     </script>";
+    }
 
+    }
 ?>
 
 <?php  include 'header.php' ?>
@@ -38,17 +56,28 @@ if(isset($_POST['update'])){
       <div class="card card-body">
       <form action="edit.php?id=<?php echo $_GET['id']; ?>" method="POST">
         <div class="form-group">
+        <label class="font-weight-bold">Nombre</label>
           <input name="nombre" type="text" class="form-control" value="<?php echo $nombre; ?>" placeholder="Update Nombre">
         </div>
         <div class="form-group">
+        <label class="font-weight-bold">Matricula</label>
           <input name="matricula" type="text" class="form-control" value="<?php echo $matricula; ?>" placeholder="Update Nombre">
         </div>
         <div class="form-group">
+        <label class="font-weight-bold">Contraseña</label>
           <input name="Contrasena" type="text" class="form-control" value="<?php echo $contrasena; ?>" placeholder="Update Nombre">
         </div>
+        <!--   PRUEBA CON SELECT  -->
         <div class="form-group">
-          <input name="Carrera" type="text" class="form-control" value="<?php echo $carrera; ?>" placeholder="Update Nombre">
-        </div>
+                    <label class="font-weight-bold">Carrera Actual: <?php echo $carrera; ?></label>
+                    <select class="form-control" name="Carrera">
+                    <option value="ISC">ISC</option>
+                    <option value="IMA">IMA </option>
+                    <option value="IGE">IGE</option>
+                    </select>
+                </div>
+
+        <!--   PRUEBA CON SELECT  -->
         <button class="btn btn-success" name="update">
           Update
 </button>
@@ -57,7 +86,9 @@ if(isset($_POST['update'])){
     </div>
   </div>
 </div>
-
-
-
-<?php  include 'futter.php' ?>
+<?php
+}else{
+     header("location: ../index.php");
+ }
+ include ("futter.php");                                                        
+?>

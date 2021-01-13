@@ -15,16 +15,14 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-success">
-  <a class="navbar-brand" href="index.php">UESX</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <a class="navbar-brand" href="inicio.php">UESX</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav mr-auto ">
-      <a class="nav-item nav-link" href="modificar.php">Alumnos</a>
-      <a class="nav-item nav-link" href="#">Archivos</a>
-      <a class="nav-item nav-link" href="modificar.php"></a>
+      <a class="nav-item nav-link" href="AlumArchi.php">Archivos</a>
     </div>
     <div>
     <a href="salir.php" class="btn btn-dark ">
