@@ -1,7 +1,7 @@
-<?php include "conexion.php";
+<?php include "../conexion.php";
 session_start();
 if (isset($_SESSION['matricula'])) {
-  include("header.php");
+  include("../header.php");
 ?>
 
   <body class="text-center">
@@ -19,7 +19,7 @@ if (isset($_SESSION['matricula'])) {
 
       <div class="container">
         <main role="main" class="inner cover">
-          <h1 class="cover-heading">Acerca de</h1>
+          <h1 class="cover-heading">Acerca de jajajaj</h1>
           <p class="lead" style="text-align: justify;">El sistema fue desarrollado por el alumno de la carrera Ingenieria en Sistemas Computacionales de la UESX, Cristian Enrique Villa Morales.
             Se pone en disposición contactos del mismo para cualquier duda o aclaración del sistema, e igualmente de cualquier apoyo de cualquier tipo.
           </p>
@@ -47,5 +47,5 @@ if (isset($_SESSION['matricula'])) {
 } else {
   header("location: ../index.php");
 }
-include("futter.php");
+include("../futter.php");
   ?>

@@ -37,11 +37,6 @@ if($tamaño <= $limite_kb * 1024){
     
    
 }
-
-
-
-
-
 // Cómo subir el archivo
 //$fichero = $_FILES["subir"];
 
