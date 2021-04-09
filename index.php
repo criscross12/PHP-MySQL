@@ -20,8 +20,8 @@
         <div class="Login">
             <img class="avatar" src="includes/UMB.jpg" alt="">
             <h1>Iniciar sesión</h1>
-
-            <label for="matricula">Matricula</label>
+    
+            <label for="floatingInput">Matricula</label>
             <input type="text" name="matricula" placeholder="Enter username" required>
 
             <label for="contrasena">Contraseña</label>

@@ -1,8 +1,8 @@
-<?php include 'conexion.php';
+<?php include '../conexion.php';
     session_start();
     if(isset($_GET['id'])){
         $id = $_GET['id'];
-        $delete = "DELETE FROM `alumno` WHERE `id` = $id";
+        $delete = "DELETE FROM `maestros` WHERE `id` = $id";
         $consulta = mysqli_query($conexion,$delete);
 
         if(!$consulta){
@@ -10,7 +10,7 @@
         }
     echo "<script>
      alert('!Elimidado Correctamente!');
-     window.location= 'modificar.php'
+     window.location= '../maestros.php'
      </script>";
     }
 ?>

@@ -18,6 +18,7 @@ $resultCarrera = mysqli_query($conexion, $sqlCarrera);
 </head>
 
 <body>
+<br>
     <div class="container">
         <h1 style="text-align: center;">Registro de Alumno</h1>
         <hr>
@@ -42,10 +43,7 @@ $resultCarrera = mysqli_query($conexion, $sqlCarrera);
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Carrera</label>
-                        <!-- MODIFICAR SELECCIONAR POR LA BASE DE DATOS -->
-
                         <select class="form-control" name="Carrera">
-                            <!-- <select class="form-control" name="Carrera"> -->
                             <option value="0">Seleccione:</option>
                             <?php
                             while ($filasCa = mysqli_fetch_array($resultCarrera)) {

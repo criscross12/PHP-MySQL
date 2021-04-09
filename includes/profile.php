@@ -21,14 +21,7 @@ if (isset($_SESSION['id'])) {
             $semestre = $filas["semestre"];
             $id = $filas["id"];
         }
-    }
-
-
-    /* Linea de error*/
-    //echo $filasql['NombreCarrera'];
-    // $nombreofc[1]=$filasql[''];
-    /*Aquí convendría cerrar los recursos si no se van a usar más*/
-    //return $nombreofc;                  
+    }                
 
     ?>
 

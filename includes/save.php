@@ -2,68 +2,26 @@
 session_start();
 $patron_texto = "/^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙ\s]+$/";
 if (isset($_POST['save'])) {
- $nombre = $_POST['nombre'];
- $matricula = $_POST['matricula'];
- $contrasena = $_POST['contrasena']; 
- $carrera = $_POST['Carrera'];
- if($carrera == 'ISC'){
-        if (is_numeric($matricula)) {
-        $sql = "INSERT INTO `alumno` (`Nombre`, `Matricula`, `Contrasena`, `Carrera`) VALUES ('$nombre','$matricula','$contrasena','$carrera')";
-            $consulta = mysqli_query($conexion, $sql);
-        if(!$consulta){
+    $nombre = $_POST['nombre'];
+    $AP = $_POST['Ap'];
+    $AM =  $_POST['Am'];
+    $matricula = $_POST['matricula'];
+    if (is_numeric($matricula)) {
+        $sql = "INSERT INTO `maestros` (`Nombre`, `Ap_Paterno`, `Ap_Materno`, `Matricula`)
+         VALUES ('$nombre', '$AP', '$AM', '$matricula')";
+        $consulta = mysqli_query($conexion, $sql);
+        if (!$consulta) {
             die("query fail");
-            } else {
-                $_SESSION['massage'] = 'Registro exitoso :)';
-            $_SESSION['massage_type'] = 'success';
-                header("location: modificar.php");
-            }
         } else {
-            $_SESSION['massage'] = 'Registro Fallido :(';
-            $_SESSION['massage_type'] = 'success';
-            header("location: modificar.php");
+            echo "<script>
+            alert('Registro Exitoso :)');
+            window.location= 'maestros.php'
+            </script>";           
         }
-    }else if($carrera== "IMA"){
-        if($nombre == ""){
-            echo 'no';
-        }
-        $sql = "INSERT INTO `alumno` (`Nombre`, `Matricula`, `Contrasena`, `Carrera`) VALUES ('$nombre','$matricula','$contrasena','$carrera')";
-        $consulta = mysqli_query($conexion,$sql);
-        
-        if(!$consulta){
-            die("query fail"); 
-        }else{
-    
-    
-            $_SESSION['massage'] = 'Registro exitoso :)';
-            $_SESSION['massage_type'] = 'success';
-            
-            header("location: modificar.php");
-        }
-
-    }else if($carrera == "IGE"){
-        if($nombre == ""){
-            echo 'no';
-        }
-        $sql = "INSERT INTO `alumno` (`Nombre`, `Matricula`, `Contrasena`, `Carrera`) VALUES ('$nombre','$matricula','$contrasena','$carrera')";
-        $consulta = mysqli_query($conexion,$sql);
-        
-        if(!$consulta){
-            die("query fail"); 
-        }else{
-    
-    
-            $_SESSION['massage'] = 'Registro exitoso :)';
-            $_SESSION['massage_type'] = 'success';
-            
-            header("location: modificar.php");
-        }
-
+    } else {
+        echo "<script>
+        alert('Matricula solo con valores numericos');
+        window.location= 'maestros.php'
+        </script>"; 
     }
-
- }
- 
-
-
-
-
-?>
+}
