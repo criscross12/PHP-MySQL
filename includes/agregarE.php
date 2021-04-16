@@ -2,54 +2,55 @@
 session_start();
 if (isset($_SESSION['matricula'])) {
     include("header.php");
+    $sqlMaestros = "SELECT * FROM maestros";
+    $resultMaestros = mysqli_query($conexion, $sqlMaestros);
+    $sqlMaterias = "SELECT * FROM materias";
+    $resultMaterias = mysqli_query($conexion, $sqlMaterias);
 ?>
-
     <div class="container p-4">
         <div class="row">
             <div class="col-md-4 mx-auto">
                 <div class="card card-body">
-                    <form action="#" method="POST">
+                    <form method="POST" action="encuestas/saveEncuesta.php">
                         <h3>Agregar Encuesta</h3>
                         <hr>
                         <div class="form-group">
                             <label class="font-weight-bold">Titulo</label>
-                            <input name="nombre" type="text" class="form-control" placeholder="Update Nombre">
-                        </div>
-                        <div class="form-group">
-                            <div class="fl">
-                                <label class="font-weight-bold">Nº de opciones:</label>
-                                <select name="opciones" class="form-control">
-                                    <?php for ($i = 2; $i <= 20; $i++) { // esto es un loop simple, solo para ahorrarnos trabajo, este select tendra de 2 a 20 opciones, si deseas cambiarlo lo puedes hacer aqui. 
-                                    ?>
-                                        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
+                            <input name="Titulo" type="text" class="form-control" placeholder="Ingrese el titulo">
                         </div>
                         <!--   PRUEBA CON SELECT  -->
                         <div class="form-group">
                             <label class="font-weight-bold">Docente</label>
-                            <select class="form-control" name="Carrera">
-                                <option value="ISC">ISC</option>
-                                <option value="IMA">IMA </option>
-                                <option value="IGE">IGE</option>
+                            <select class="form-control" name="Docente">
+                                <option value="0">Seleccione:</option>
+                                <?php
+                                while ($filasCa = mysqli_fetch_array($resultMaestros)) {
+                                    echo '<option value="' . $filasCa["ID"] . '">' . $filasCa["Nombre"] . '</option>';
+                                }
+                                ?>
                             </select>
                         </div>
                         <div class="form-group">
                             <label class="font-weight-bold">Materia</label>
-                            <select class="form-control" name="Carrera">
-                                <option value="ISC">ISC</option>
-                                <option value="IMA">IMA </option>
-                                <option value="IGE">IGE</option>
+                            <select class="form-control" name="Materia">
+                                <option value="0">Seleccione:</option>
+                                <?php
+                                while ($filasMa = mysqli_fetch_array($resultMaterias)) {
+                                    echo '<option value="' . $filasMa["ID"] . '">' . $filasMa["Nombre"] . '</option>';
+                                }
+                                ?>
                             </select>
                         </div>
-
-                        <!--   PRUEBA CON SELECT  -->
+                        <!-- <div class="form-group">
+                            <div class="fl">
+                                <label class="font-weight-bold">Nº de opciones:</label>
+                                <select name="respuestas" class="form-control">
+                                  
+                                </select>
+                            </div> -->
                         <div class="container">
-                            <button class="btn btn-success" name="update">
-                                Continuar
-                            </button>
-                            <a href="encuestas.php" class="btn btn-info m-2">← Volver</a>
+                            <input type="submit" class="btn btn-success btn-block" name="save" value="GUARDAR">
+                            <a href="encuestas.php" class="btn btn-info btn-block">← Volver</a>
                         </div>
                     </form>
                 </div>

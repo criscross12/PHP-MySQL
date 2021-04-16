@@ -31,9 +31,9 @@
         <a class="nav-item nav-link" href="maestros.php"><strong>Maestros</strong></a>
         <a class="nav-item nav-link " href="encuestas.php"><strong>Encuestas</strong></a>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" id="nav">
+          <!-- <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" id="nav">
             Otros
-          </a>
+          </a> -->
           <div class="dropdown-menu dropdown-black text-center" aria-label="nav">
 
           </div>

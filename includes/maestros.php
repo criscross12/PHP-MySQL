@@ -66,7 +66,7 @@ if (isset($_SESSION['matricula'])) {
                         </td>
                         <td> <?php echo $filas['Matricula']  ?> </td>                        
                         <td>
-                            <a href="edit.php?id=<?php echo $filas['id'] ?>" class="btn btn-secondary">
+                            <a href="editMaestros.php?id=<?php echo $filas['ID'] ?>" class="btn btn-secondary">
                                 <i class="fas fa-edit"></i>
                             </a>
                             <a href="maestros/deleteM.php?id=<?php echo $filas['ID'] ?>" class="btn btn-danger">

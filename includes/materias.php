@@ -20,7 +20,7 @@ if (isset($_SESSION['matricula'])) {
                                 <input type="text" name="NombreMateria" class="form-control" placeholder="Nombre de la materia" autofocus required>
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1">Carrera</label>
+                                <label class="font-weight-bold">Carrera</label>
                                 <select class="form-control" name="Carrera">
                                     <option value="0">Seleccione:</option>
                                     <?php
