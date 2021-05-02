@@ -11,7 +11,7 @@ if (isset($_SESSION['matricula'])) {
             <div class="row">
                 <div class="col-md-4">
                     <div class="card card-body">
-                        <form action="save.php" method="POST">
+                        <form action="maestros/save.php" method="POST">
                             <div class="form-group">
                                 <input type="text" name="nombre" class="form-control" placeholder="Nombre" autofocus required>
                             </div>

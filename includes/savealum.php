@@ -37,8 +37,6 @@ if (isset($_POST['save'])) {
             </script>";
         } else {
 
-    //         $sql = "INSERT INTO `alumno` (`Nombre`, `A_paterno`, `A_materno`, `Matricula`, `Contrasena`, `Carrera`) 
-    // VALUES ('$nombre','$AP','$AM','$matricula','$contrasena','$carrera')";
             $sql = "INSERT INTO `alumno` ( `Nombre`, `A_paterno`, `A_Materno`, `Matricula`, `Contrasena`, `Carrera`, `semestre`) 
     VALUES ( '$nombre', '$AP', '$AM', '$matricula', '$contrasena', '$carrera', '$Semestre')";
 

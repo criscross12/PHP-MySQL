@@ -1,4 +1,4 @@
-<?php include "conexion.php";
+<?php include "../conexion.php";
 session_start();
 $patron_texto = "/^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙ\s]+$/";
 if (isset($_POST['save'])) {
@@ -15,13 +15,13 @@ if (isset($_POST['save'])) {
         } else {
             echo "<script>
             alert('Registro Exitoso :)');
-            window.location= 'maestros.php'
+            window.location= '../maestros.php'
             </script>";           
         }
     } else {
         echo "<script>
         alert('Matricula solo con valores numericos');
-        window.location= 'maestros.php'
+        window.location= '../maestros.php'
         </script>"; 
     }
 }

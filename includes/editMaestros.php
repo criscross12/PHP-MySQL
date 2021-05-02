@@ -1,53 +1,38 @@
 <?php include "conexion.php";
 session_start();
 if (isset($_SESSION['matricula'])) {
-
-   if (isset($_GET['ID'])) {
-    $id = $_GET['ID'];
-    $query = "SELECT * FROM maestros WHERE ID = $id";
+    $id = $_GET['id'];
+    $query = "SELECT * FROM maestros WHERE id = $id";
     $result = mysqli_query($conexion, $query);
     if (mysqli_num_rows($result) == 1) {
       $row = mysqli_fetch_array($result);
       $nombre = $row['Nombre'];
       $matricula = $row['Matricula'];
     }
-  }
-
-    include("header.php");
 ?>
-
+    <?php include 'header.php' ?>
     <div class="container p-4">
         <div class="row">
             <div class="col-md-4 mx-auto">
                 <div class="card card-body">
-                    <form action="editMaestros.php?id=<?php echo $_GET['ID']; ?>" method="POST">
+                    <form action="editMaestros.php" method="POST">
                         <div class="form-group">
                             <label class="font-weight-bold">Nombre</label>
                             <input name="nombre" type="text" class="form-control" value="<?php echo $nombre; ?>" placeholder="Update Nombre">
                         </div>
                         <div class="form-group">
                             <label class="font-weight-bold">Apellido Paterno</label>
-                            <input name="AP" type="text" class="form-control" value="<?php echo $filas['A_paterno']; ?>" placeholder="Update Nombre">
+                            <input name="AP" type="text" class="form-control" value="<?php  echo $id; ?>" placeholder="Update Nombre">
                         </div>
                         <div class="form-group">
                             <label class="font-weight-bold">Apellido Materno</label>
-                            <input name="AM" type="text" class="form-control" value="<?php echo $filas['A_Materno']; ?>" placeholder="Update Nombre">
+                            <input name="AM" type="text" class="form-control" value="<?php  ?>" placeholder="Update Nombre">
                         </div>
                         <div class="form-group">
                             <label class="font-weight-bold">Matricula</label>
-                            <input name="Matricula" type="text" class="form-control" value="<?php echo $filas['Matricula'] ?>" disabled>
+                            <input name="Matricula" type="text" class="form-control" value="<?php echo $matricula ?>" disabled>
                         </div>
-                        <div class="form-group">
-                            <label class="font-weight-bold">Contraseña</label>
-                            <input name="Contrasena" type="text" class="form-control" value="<?php echo $filas['Contrasena']; ?>" placeholder="Update Nombre">
-                        </div>
-                        <!--   PRUEBA CON SELECT  -->
-                        <div class="form-group">
-                            <label class="font-weight-bold">Carrera Actual:</label>
-                            <input name="matricula" type="text" class="form-control" value="<?php echo $filas['Carrera'] ?>" disabled>
-                        </div>
-
-                        <!--   PRUEBA CON SELECT  -->
+                            <!--   PRUEBA CON SELECT  -->
                         <div class="container text-center">
                             <button class="btn btn-success" name="update">
                                 Actualizar
