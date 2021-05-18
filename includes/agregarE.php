@@ -6,6 +6,7 @@ if (isset($_SESSION['matricula'])) {
     $resultMaestros = mysqli_query($conexion, $sqlMaestros);
     $sqlMaterias = "SELECT * FROM materias";
     $resultMaterias = mysqli_query($conexion, $sqlMaterias);
+    $sql = "SELECT * FROM estatus";
 ?>
     <div class="container p-4">
         <div class="row">
@@ -37,6 +38,24 @@ if (isset($_SESSION['matricula'])) {
                                 <?php
                                 while ($filasMa = mysqli_fetch_array($resultMaterias)) {
                                     echo '<option value="' . $filasMa["ID"] . '">' . $filasMa["Nombre"] . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold">Estatus</label>
+                            <select class="form-control" name="Status">
+                                <option value="0">Seleccione:</option>
+                                <?php
+                                
+                                $res = mysqli_query($conexion,$sql);
+                                if ($res) {
+                                    echo "good?";
+                                }else{
+                                    echo "fail";
+                                }
+                                while ($filasS = mysqli_fetch_array($res)) {
+                                    echo '<option value="' . $filasS["Id"] . '">' . $filasS["Status"] . '</option>';
                                 }
                                 ?>
                             </select>

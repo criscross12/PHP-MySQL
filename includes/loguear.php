@@ -19,7 +19,7 @@ if($array['contar']>0 ){
 }else if($proy['conta']>0 )
 {
     $_SESSION['matricula']= $matricula;
-    $sqlid = "SELECT id FROM `ce` where matricula = '$matricula' and contrasena = '$contrasena' ";
+    $sqlid = "SELECT id FROM `ce` where matricula = '$matricula' and contraseña = '$contrasena' ";
     $consultid = mysqli_query($conexion,$sqlid);
     $idusuario = mysqli_fetch_row($consultid)[0];
     $_SESSION['id'] = $idusuario;

@@ -10,7 +10,7 @@
         }
     echo "<script>
      alert('!Elimidado Correctamente!');
-     window.location= '../maestros.php'
+     window.location= '../encuestas.php'
      </script>";
     }
 ?>

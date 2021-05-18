@@ -5,7 +5,7 @@ if (isset($_POST['save'])) {
     $titulo = $_POST['Titulo'];
     $Docente = $_POST['Docente'];
     $Materia =  $_POST['Materia']; 
-    $status = "Active";  
+    $status = $_POST['Status'];  
         $sql = "INSERT INTO `encuesta` (`Titulo`, `Docente`, `Materia`, `Status`)
          VALUES ('$titulo', '$Docente', '$Materia','$status')";
         $consulta = mysqli_query($conexion, $sql);
