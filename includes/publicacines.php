@@ -22,9 +22,8 @@ if (isset($_SESSION['id'])) {
                     <table class="table">
                         <thead>
                             <tr>
-                                <th width="70%">Título</th>
-                                <th width="13%">Editar</th>
-                                <th width="10%">Eliminar</th>
+                                <th width="13%">Título</th>
+                                <th width="13%">Contestar</th>
                                 <th width="10%">Status</th>
                             </tr>
                         </thead>
@@ -37,26 +36,17 @@ if (isset($_SESSION['id'])) {
                                 <!-- DESCARGAR ARCHIVO-->
                                 <td><?php echo $mostrar['Titulo']; ?></td>
                                 <td>
-                                    <a href="<?php echo $rutaDescarga; ?>" download="<?php $nombreArchivo ?>"
-                                        class="btn btn-info ">
-                                        <i class="fas fa-file-download"></i>
-                                </td>
-                                <!-- ELIMINAR ARCHIVO-->
-                                <td>
-                                    <a href="encuestas/deleteEncuesta.php?id=<?php echo $mostrar['Id_encuesta'] ?>"
-                                        class="btn btn-danger">
-                                        <i class="fas fa-trash-alt"
-                                            onclick="return confirm('Esta seguro de eliminar al alumno?');"> <span
-                                                class="glyphicon glyphicon-trash" aria-hidden="true"></span></i>
-                                    </a>
+                                    <!-- <a href="form.php" class="btn btn-info "> -->
+                                    <a href="form.php?Id_encuesta=<?php echo $mostrar['Id_encuesta'] ?>">
+                                        <i class="fas fa-pencil-alt"></i>
                                 </td>
                                 <?php
-                if ($status == "1") {
-                  echo  '<td>
-                  <a  class="btn btn-info ">
-                    <i class="fas fa-check-square"></i>
-                   </td>'
-                ?>                        
+                                    if ($status == "1") {
+                                    echo  '<td>
+                                    <a  class="btn btn-success">
+                                        <i class="fas fa-check-square"></i>
+                                    </td>'
+                                ?>
                             </tr>
                             <?php } ?>
                             <?php } ?>
