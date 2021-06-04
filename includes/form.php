@@ -33,7 +33,7 @@ if (isset($_SESSION['id'])) {
                                     <th width="25%"></th>
                                     <th width="13%">Totalmente en desacuerdo</th>
                                     <th width="13%">Desacuerdo</th>
-                                    <th width="13%">Ni en acuerdo ni en desacuerdo</th>
+                                    <th width="13%">sNi en acuerdo ni en desacuerdo</th>
                                     <th width="13%">De acuerdo</th>
                                     <th width="13%">Totalmente de acuerdo</th>
                                 </tr>
@@ -46,23 +46,23 @@ if (isset($_SESSION['id'])) {
 
                                     <td><?php echo $mostrarP['Texto'] ?></td>
                                     <td>
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        <input class="form-check-input" type="checkbox" name="flexRadioDefault"
+                                            id="flexRadioDefault1" value="7">
+                                    </td>
+                                    <td>
+                                        <input class="form-check-input" type="checkbox" name="flexRadioDefault"
+                                            id="flexRadioDefault1" value="7">
+                                    </td>
+                                    <td>
+                                        <input class="form-check-input" type="checkbox" name="flexRadioDefault"
+                                            id="flexRadioDefault1" value="7">
+                                    </td>
+                                    <td>
+                                        <input class="form-check-input" type="checkbox" name="flexRadioDefault"
                                             id="flexRadioDefault1">
                                     </td>
                                     <td>
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                            id="flexRadioDefault1">
-                                    </td>
-                                    <td>
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                            id="flexRadioDefault1">
-                                    </td>
-                                    <td>
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                            id="flexRadioDefault1">
-                                    </td>
-                                    <td>
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        <input class="form-check-input" type="checkbox" name="flexRadioDefault"
                                             id="flexRadioDefault1">
                                     </td>
                                 </tr>
