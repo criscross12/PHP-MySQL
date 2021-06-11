@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION['matricula'])) {
   include("header.php");
-  $sqlEncuestas = "SELECT * FROM encuesta";
+  $sqlEncuestas = "SELECT * FROM encuesta INNER join materias on encuesta.Materia= materias.ID";
   $res = mysqli_query($conexion, $sqlEncuestas);
   $sqlMaestros = "SELECT * FROM maestros";
   $resultMaestros = mysqli_query($conexion, $sqlMaestros);
@@ -39,12 +39,7 @@ if (isset($_SESSION['matricula'])) {
                 </div>
 
                 <div class="modal-body">
-                    <form method="POST" action="encuestas/saveEncuesta.php">
-                        <div class="form-group">
-                            <label class="font-weight-bold">Titulo</label>
-                            <input name="Titulo" type="text" class="form-control" placeholder="Ingrese el titulo"
-                                autofocus required>
-                        </div>
+                    <form method="POST" action="encuestas/saveEncuesta.php">                        
                         <!--   PRUEBA CON SELECT  -->
                         <div class="form-group">
                             <label class="font-weight-bold">Docente</label>
@@ -52,7 +47,7 @@ if (isset($_SESSION['matricula'])) {
                                 <option value="0">Seleccione:</option>
                                 <?php
                                 while ($filasCa = mysqli_fetch_array($resultMaestros)) {
-                                    echo '<option value="' . $filasCa["ID"] . '">' . $filasCa["Nombre"] . '</option>';
+                                    echo '<option value="' . $filasCa["ID"] . '">' . $filasCa["Nombre_Docente"] . '</option>';
                                 }
                                 ?>
                             </select>
@@ -124,11 +119,11 @@ if (isset($_SESSION['matricula'])) {
             ?>
                     <tr>
                         <!-- DESCARGAR ARCHIVO-->
-                        <td><?php echo $mostrar['Titulo']; ?></td>
+                        <td><?php echo $mostrar['Nombre'];?></td>
                         <td>
-                            <a href="<?php echo $rutaDescarga; ?>" download="<?php $nombreArchivo ?>"
+                            <a href="editEncuesta.php?Id_encuesta= <?php echo $mostrar["Id_encuesta"]; ?>" 
                                 class="btn btn-info ">
-                                <i class="fas fa-file-download"></i>
+                                <i class="fas fa-edit"></i>
                         </td>
                         <!-- ELIMINAR ARCHIVO-->
                         <td>

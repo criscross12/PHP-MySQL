@@ -23,6 +23,16 @@ if (isset($_SESSION['matricula'])) {
                                     }
                                     ?>
                                 </select>
+                                <select class="custom-select" name="semestres">
+                                    <option value="0">Seleccione:</option>
+                                    <?php
+                                    $sqlSemestre = "SELECT * FROM semestre";
+                                    $resultCarrera = mysqli_query($conexion, $sqlSemestre);
+                                    while ($filasSe = mysqli_fetch_array($resultCarrera)) {
+                                        echo '<option value="' . $filasSe["id"] . '">' . $filasSe["Semestre"] . '</option>';
+                                    }
+                                    ?>
+                                </select>
                                 <div class="input-group-append">
                                     <button class="btn btn-success" name="filtrar" type="submit">
                                         Seleccionar
@@ -47,7 +57,8 @@ if (isset($_SESSION['matricula'])) {
                                 <?php
                                 if (isset($_POST['filtrar'])) {
                                     $carrera = $_POST['filtro'];
-                                    $sql = mysqli_query($conexion, 'SELECT * FROM `alumno` where carrera= "' . $carrera . '" ORDER by A_paterno ASC');
+                                    $semestre = $_POST['semestres'];
+                                    $sql = mysqli_query($conexion, 'SELECT * FROM `alumno` where carrera= "' . $carrera . '" and semestre = "'.$semestre.'" ORDER by A_paterno ASC');
                                     $sqlall = mysqli_query($conexion, 'SELECT * FROM `alumno` ORDER by A_paterno ASC');
 
                                     if ($carrera == "ALL") {

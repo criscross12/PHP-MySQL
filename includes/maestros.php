@@ -3,7 +3,6 @@ session_start();
 if (isset($_SESSION['matricula'])) {
     include("header.php");
 ?>
-
     <body class="">
         <div class="container p-16">
             <hr style="margin-top:20px;margin-bottom: 20px; ">
@@ -61,12 +60,12 @@ if (isset($_SESSION['matricula'])) {
                                 <?php echo $filas['Ap_Materno'] ?>
                             </a>
                             <a>
-                                <?php echo  $filas['Nombre'] ?>
+                                <?php echo  $filas['Nombre_Docente'] ?>
                             </a>
                         </td>
                         <td> <?php echo $filas['Matricula']  ?> </td>                        
                         <td>
-                            <a href="editMaestros.php?id=<?php echo $filas['ID'] ?>" class="btn btn-secondary">
+                            <a href="editMaestros.php?ID=<?php echo $filas['ID'] ?>" class="btn btn-secondary">
                                 <i class="fas fa-edit"></i>
                             </a>
                             <a href="maestros/deleteM.php?id=<?php echo $filas['ID'] ?>" class="btn btn-danger">

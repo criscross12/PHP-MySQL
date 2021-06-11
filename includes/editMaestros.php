@@ -1,12 +1,12 @@
 <?php include "conexion.php";
 session_start();
 if (isset($_SESSION['matricula'])) {
-    $id = $_GET['id'];
-    $query = "SELECT * FROM maestros WHERE id = $id";
+    $id = $_GET['ID'];
+    $query = "SELECT * FROM maestros WHERE ID = $id";
     $result = mysqli_query($conexion, $query);
     if (mysqli_num_rows($result) == 1) {
       $row = mysqli_fetch_array($result);
-      $nombre = $row['Nombre'];
+      $nombre = $row['Nombre_Docente'];
       $matricula = $row['Matricula'];
     }
 ?>

@@ -7,6 +7,8 @@ if (isset($_SESSION['id'])) {
     include("headeralum.php");
     $sqlEncuestas = "SELECT * FROM encuesta WHERE Status= 1";
     $res = mysqli_query($conexion, $sqlEncuestas);
+    $sqlNameM = "SELECT * FROM `encuesta` INNER join materias on encuesta.Materia= materias.ID where Status=1";
+    $resMa = mysqli_query($conexion, $sqlNameM);
 ?>
 
 <body class="text-center">
@@ -23,20 +25,21 @@ if (isset($_SESSION['id'])) {
                         <thead>
                             <tr>
                                 <th width="13%">Título</th>
+                                <th width="13%">Fecha de Publicación</th>
                                 <th width="13%">Contestar</th>
                                 <th width="10%">Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-            while ($mostrar = mysqli_fetch_array($res)) {
+            while ($mostrar = mysqli_fetch_array($resMa)) {
               $status = $mostrar['Status'];
             ?>
                             <tr>
-                                <!-- DESCARGAR ARCHIVO-->
-                                <td><?php echo $mostrar['Titulo']; ?></td>
-                                <td>
-                                    <!-- <a href="form.php" class="btn btn-info "> -->
+                           
+                                <td><?php echo $mostrar['Nombre']; ?></td>
+                                <td><?php echo $mostrar['Fecha']; ?></td>
+                                <td>                            
                                     <a href="form.php?Id_encuesta=<?php echo $mostrar['Id_encuesta'] ?>">
                                         <i class="fas fa-pencil-alt"></i>
                                 </td>

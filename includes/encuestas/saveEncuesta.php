@@ -1,16 +1,20 @@
 <?php include "../conexion.php";
 session_start();
-$patron_texto = "/^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙ\s]+$/";
 if (isset($_POST['save'])) {
-    $titulo = $_POST['Titulo'];
+    // $titulo = $_POST['Titulo'];
+    date_default_timezone_set('America/Mexico_city');
     $Docente = $_POST['Docente'];
     $Materia =  $_POST['Materia']; 
     $status = $_POST['Status'];  
-        $sql = "INSERT INTO `encuesta` (`Titulo`, `Docente`, `Materia`, `Status`)
-         VALUES ('$titulo', '$Docente', '$Materia','$status')";
+    $fecha = date('Y-m-d H:i:s');
+        $sql = "INSERT INTO `encuesta` (`Docente`, `Materia`,`Fecha`, `Status`)
+         VALUES ('$Docente', '$Materia','$fecha','$status')";
         $consulta = mysqli_query($conexion, $sql);
         if (!$consulta) {
-            die("nopS");
+            echo "<script>
+            alert('Registro incompleto');
+            window.location= '../encuestas.php'
+            </script>";  
         } else {
             echo "<script>
             alert('Registro de Materia Exitoso :)');

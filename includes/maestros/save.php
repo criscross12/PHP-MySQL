@@ -7,7 +7,7 @@ if (isset($_POST['save'])) {
     $AM =  $_POST['Am'];
     $matricula = $_POST['matricula'];
     if (is_numeric($matricula)) {
-        $sql = "INSERT INTO `maestros` (`Nombre`, `Ap_Paterno`, `Ap_Materno`, `Matricula`)
+        $sql = "INSERT INTO `maestros` (`Nombre_Docente`, `Ap_Paterno`, `Ap_Materno`, `Matricula`)
          VALUES ('$nombre', '$AP', '$AM', '$matricula')";
         $consulta = mysqli_query($conexion, $sql);
         if (!$consulta) {

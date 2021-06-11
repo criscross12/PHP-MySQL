@@ -55,8 +55,8 @@ if (isset($_SESSION['matricula'])) {
             <thead>
                 <tr>
                     <th>Nombre de la materia</th>
-                    <th>Semestre</th>
                     <th>Carrera</th>
+                    <th>Semestre</th>              
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -72,8 +72,6 @@ if (isset($_SESSION['matricula'])) {
                         $Carrera = $filas["NC"];
                         $Semestre = $filas["S"];
                         $id =$filas['id'];
-                    
-
                 ?>
                     <tr>
                         <td>
