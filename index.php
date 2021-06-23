@@ -22,12 +22,12 @@
             <h1>Iniciar sesión</h1>
     
             <label for="floatingInput">Matricula</label>
-            <input type="text" name="matricula" placeholder="Enter username" required>
+            <input type="text" name="matricula" placeholder="Enter Matricula" required>
 
             <label for="contrasena">Contraseña</label>
-            <input type="password" name="contrasena" placeholder="Enter your Password" required>
+            <input type="password" name="contrasena" placeholder="Enter your Contraseña" required>
 
-            <input type="submit" value="Login">
+            <input type="submit" value="Iniciar Sesión">
             <div class="col text-center">
                 <a href="includes/registro.php" class="btn btn-success btn-lg " role="button" aria-disabled="true">Registrar</a>
             </div>

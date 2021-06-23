@@ -4,6 +4,8 @@ $idUsuario = $_SESSION['id'];
 if (isset($_SESSION['id'])) {
     $sql = mysqli_query($conexion, 'SELECT * FROM `alumno` where id= "' . $idUsuario . '" ');
     $filas = mysqli_fetch_assoc($sql);
+    $sqlc = mysqli_query($conexion, 'SELECT carrera.Nombre FROM `alumno` INNER JOIN carrera on Carrera = carrera.id WHERE alumno.id = "' . $idUsuario . '" ');
+    $filaC = mysqli_fetch_assoc($sqlc);
     if (isset($_POST['update'])) {
         $id = $_SESSION['id'];
         $nombre = $_POST['nombre'];
@@ -66,7 +68,7 @@ if (isset($_SESSION['id'])) {
                         <!--   PRUEBA CON SELECT  -->
                         <div class="form-group">
                             <label class="font-weight-bold">Carrera Actual:</label>
-                            <input name="matricula" type="text" class="form-control" value="<?php echo $filas['Carrera'] ?>" disabled>
+                            <input name="matricula" type="text" class="form-control" value="<?php echo $filaC['Nombre'] ?>" disabled>
                         </div>
 
                         <!--   PRUEBA CON SELECT  -->

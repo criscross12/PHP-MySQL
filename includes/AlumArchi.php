@@ -30,7 +30,7 @@ if (isset($_SESSION['id'])) {
   <?php
 
   $idUsuario = $_SESSION['id'];
-  $sql = "SELECT archivos.id_archivo, archivos.nombre as nombreArchivo, archivos.ruta as RUTA, usuario.id , usuario.Nombre as nombreAlumno\n"
+  $sql = "SELECT archivos.id_archivo as Id_archivo, archivos.nombre as nombreArchivo, archivos.ruta as RUTA, usuario.id , usuario.Nombre as nombreAlumno\n"
     . "FROM `t_archivos` as archivos INNER join alumno as usuario on archivos.id_alumno = usuario.id and archivos.id_alumno = $idUsuario;";
   $result = mysqli_query($conexion, $sql);
   ?>
@@ -55,7 +55,7 @@ if (isset($_SESSION['id'])) {
             while ($mostrar = mysqli_fetch_array($result)) {
               $rutaDescarga = "../archivos/" . $idUsuario . "/" . $mostrar['nombreArchivo'];
               $nombreArchivo = $mostrar['nombreArchivo'];
-              $idArchivo = $mostrar['id_archivo'];
+              $idArchivo = $mostrar['Id_archivo'];
 
             ?>
               <tr>
@@ -67,10 +67,10 @@ if (isset($_SESSION['id'])) {
                 </td>
                 <!-- ELIMINAR ARCHIVO-->
                 <td>
-                  <a href="Eliminar.php?name=../archivos/<?php echo $mostrar['nombreArchivo']; ?>" class="btn btn-danger">
-                    <i class="fas fa-trash-alt" onclick="return confirm('Esta seguro de eliminar al alumno?');"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></i>
+                  <a href="Eliminar.php?id_archivo=../archivos/<?php echo $idArchivo; ?>" class="btn btn-danger">
+                    <i class="fas fa-trash-alt" onclick="return confirm('Esta seguro de eliminar al alumno?');"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></i>                   
                 </a>
-                </td>
+                </td>               
               </tr>
             <?php } ?>
           </tbody>

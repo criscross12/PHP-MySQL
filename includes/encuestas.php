@@ -8,8 +8,8 @@ if (isset($_SESSION['matricula'])) {
   $resultMaestros = mysqli_query($conexion, $sqlMaestros);
   $sqlMaterias = "SELECT * FROM materias";
   $resultMaterias = mysqli_query($conexion, $sqlMaterias);
-  $sql = "SELECT * FROM estatus";
-  $resultStatus = mysqli_query($conexion, $sql);
+//   $sql = "SELECT * FROM estatus";
+//   $resultStatus = mysqli_query($conexion, $sql);
 ?>
 <div class="alert alert-success" role="alert">
     <div class="container">
@@ -67,11 +67,8 @@ if (isset($_SESSION['matricula'])) {
                             <label class="font-weight-bold">Estatus</label>
                             <select class="form-control" name="Status" autofocus required>
                                 <option value="0">Seleccione:</option>
-                                <?php
-                                while ($filasS = mysqli_fetch_array($resultStatus)) {
-                                    echo '<option value="' . $filasS["Id"] . '">' . $filasS["Status"] . '</option>';
-                                }
-                                ?>
+                                <option value="1">Activar</option>
+                                <option value="2">Desactivar</option>                             
                             </select>
                         </div>
                         <!-- <div class="form-group">
@@ -108,6 +105,7 @@ if (isset($_SESSION['matricula'])) {
                     <tr>
                         <th width="70%">Título</th>
                         <th width="13%">Editar</th>
+                        <th width="13%">Reporte</th>
                         <th width="10%">Eliminar</th>
                         <th width="10%">Status</th>
                     </tr>
@@ -117,13 +115,17 @@ if (isset($_SESSION['matricula'])) {
             while ($mostrar = mysqli_fetch_array($res)) {
               $status = $mostrar['Status'];
             ?>
-                    <tr>
-                        <!-- DESCARGAR ARCHIVO-->
+                    <tr>            
                         <td><?php echo $mostrar['Nombre'];?></td>
                         <td>
                             <a href="editEncuesta.php?Id_encuesta= <?php echo $mostrar["Id_encuesta"]; ?>" 
                                 class="btn btn-info ">
                                 <i class="fas fa-edit"></i>
+                        </td>
+                        <td>
+                            <a href="test.php?Id_encuesta= <?php echo $mostrar["Id_encuesta"]; ?>" 
+                                class="btn btn-info ">
+                                <i class="fas fa-file-signature"></i>                               
                         </td>
                         <!-- ELIMINAR ARCHIVO-->
                         <td>

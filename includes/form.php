@@ -30,7 +30,7 @@ if (isset($_SESSION['id'])) {
                 <div class="alert alert-success" role="alert" style="text-align: justify;">
                     Indicaciones: Contesta lo siguiente a fin de evaluar el desempeño del docente: <?php echo $enc['Nombre_Docente']?></div>
                 <div class="panel-body">
-                    <form action="encuestas/Votar.php?Id_encuesta=<?php echo $enc["Id_encuesta"]; ?>" method="Post">
+                    <form action="encuestas/Votar.php" method="POST">
                         <table class="table table-primary  table-striped">
                             <thead>
                                 <tr>
@@ -50,32 +50,34 @@ if (isset($_SESSION['id'])) {
 
                                     <td><?php echo $mostrarP['Texto'] ?></td>
                                     <td>
-                                        <input class="form-check-input" type="radio"
-                                            name="Pregunta.<?php echo $mostrarP[0] ?>." id="flexRadioDefault1"
-                                            value="Totalmente en desacuerdo"><?php echo $mostrarP[0] ?>
+                                        <input class="form-check-input" type="radio" 
+                                            name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1"
+                                            value="0" checked><?php echo $mostrarP[0] ?>   
                                     </td>
                                     <td>
                                         <input class="form-check-input" type="radio"
-                                            name="Pregunta.<?php echo $mostrarP[0] ?>." id="flexRadioDefault1"
-                                            value="Desacuerdo"><?php echo $mostrarP[0] ?>
+                                            name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1"
+                                            value="1"><?php echo $mostrarP[0] ?>
                                     </td>
                                     <td>
                                         <input class="form-check-input" type="radio"
-                                            name="Pregunta.<?php echo $mostrarP[0] ?>." id="flexRadioDefault1"
-                                            value="Ni en acuerdo ni en desacuerdo"><?php echo $mostrarP[0] ?>
+                                            name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1"
+                                            value="2"><?php echo $mostrarP[0] ?>
                                     </td>
                                     <td>
                                         <input class="form-check-input" type="radio"
-                                            name="Pregunta.<?php echo $mostrarP[0] ?>." id="flexRadioDefault1"
-                                            value="De acuerdo"><?php echo $mostrarP[0] ?>
+                                            name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1"
+                                            value="3"><?php echo $mostrarP[0] ?>
                                     </td>
                                     <td>
                                         <input class="form-check-input" type="radio"
-                                            name="Pregunta.<?php echo $mostrarP[0] ?>." id="flexRadioDefault1"
-                                            value="Totalmente de acuerdo"><?php echo $mostrarP[0] ?>
+                                            name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1"
+                                            value="4"><?php echo $mostrarP[0] ?>
                                     </td>
+                                    <tr> <input TYPE="HIDDEN" NAME="pre<?php echo $mostrarP[0] ?>" value="<?php echo $mostrarP[0] ?>"></tr>   
                                 </tr>
                                 <?php } ?>
+                                <tr> <input TYPE="HIDDEN" NAME="ID" value="<?php echo $id?>"></tr>                                
                             </tbody>
                         </table>
                         <div class="container">

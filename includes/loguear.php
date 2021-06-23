@@ -10,7 +10,7 @@ $pro = mysqli_query($conexion,$sq);
 $proy = mysqli_fetch_array($pro);
 if($array['contar']>0 ){
     session_start();
-    $_SESSION['matricula']= $matricula;
+    // $_SESSION['matricula']= $matricula;
     $sqlid = "SELECT id FROM `alumno` where matricula = '$matricula' and contrasena = '$contrasena' ";
     $consultaid = mysqli_query($conexion,$sqlid);
     $idusuario = mysqli_fetch_row($consultaid)[0];

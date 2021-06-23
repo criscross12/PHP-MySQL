@@ -1,14 +1,33 @@
-<?php include "conexion.php";
-session_start();
-$idUsuario = $_SESSION['id'];
-// $pregunta = $_POST['tiempo'];
+<?php
+include "conexion.php";
+require('../fpdf/fpdf.php');
 
-//     // Recorremos todas las preguntas
-for($i=1; $i<=50; $i++){
-    //Obtenemos el texto de la respuesta
-    //Y lo insertamos
-        $sql = "INSERT INTO `prueba` (`Id`, `Texto`, `id_al`) VALUES (NULL, 'prueba', '$idUsuario')";
-        // $sql = "INSERT INTO `respuestas` (`id`, `$id`, `$idUsuario`, `id_pregunta`, `respuesta`) VALUES (NULL, '', '', '', '')";
-        $consulta = mysqli_query($conexion, $sql);
+class PDF extends FPDF{
+    function Header(){
+        $this->SetFont('Arial','B',16);
+        $this->Cell(60);
+        $this->Cell(70,10,'Reporte de álumnos',0,0,'C');
+        $this->Ln(20);
+        $this->Cell(80,10,'Nombre',1,0,'C',0);
+        $this->Cell(50,10,'Nombre',1,0,'C',0);
+        $this->Cell(50,10,'Nombre',1,1,'C',0);
+    }
+    function Footer(){
+        $this->SetY(-15);
+        $this->SetFont('Arial','I',8);
+        $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
+    }
 }
-echo "dood";
+$sql = mysqli_query($conexion, 'SELECT * FROM `Materias`');
+
+$pdf = new PDF();
+$pdf->AliasNbPages();
+$pdf->AddPage();
+$pdf->SetFont('Times','',12);
+while ($row=$sql->fetch_assoc()) {
+    $pdf->Cell(80,10,$row['Nombre'],1,0,'C',0);
+    $pdf->Cell(50,10,$row['Nombre'],1,0,'C',0);
+    $pdf->Cell(50,10,$row['Nombre'],1,1,'C',0);
+}
+    $pdf->Output();
+?>
