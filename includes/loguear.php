@@ -15,7 +15,6 @@ if($array['contar']>0 ){
     $consultaid = mysqli_query($conexion,$sqlid);
     $idusuario = mysqli_fetch_row($consultaid)[0];
     $_SESSION['id'] = $idusuario;
-    session_regenerate_id();
     header("location: inicio.php");
 }else if($proy['conta']>0 )
 {
@@ -23,8 +22,7 @@ if($array['contar']>0 ){
     $sqlid = "SELECT id FROM `ce` where matricula = '$matricula' and contraseña = '$contrasena' ";
     $consultid = mysqli_query($conexion,$sqlid);
     $idusuario = mysqli_fetch_row($consultid)[0];
-    $_SESSION['id'] = $idusuario;
-    session_regenerate_id();
+    $_SESSION['id'] = $idusuario;   
     header("location: index.php");
 }else{
     echo "<script>

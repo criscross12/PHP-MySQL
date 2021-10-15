@@ -3,12 +3,13 @@ session_start();
 if (isset($_SESSION['matricula'])) {
     include("header.php");
 ?>
-<br>  
+<br>
+
 <body class="text-center">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <div class="cover-container d-flex  h-100 p-3 mx-auto flex-column">
         <main role="main" class="inner cover">
-            <div class="container mr-5">
-                <div class="col-md-10">
+            <div class="container">
+                <div class="">
                     <form action="" method="POST">
                         <div class="input-group mb-3">
                             <select class="custom-select" name="filtro">
@@ -40,19 +41,20 @@ if (isset($_SESSION['matricula'])) {
                     </form>
 
                     <hr style="margin-top:20px;margin-bottom: 20px;">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Matricula</th>
-                                <th>Carrera</th>
-                                <th>Contraseña</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <h4>Lista Alumnos</h4>
-                            <?php
+                    <div class="table-responsive-sm">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Matricula</th>
+                                    <th>Carrera</th>
+                                    <th>Contraseña</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <h4>Lista Alumnos</h4>
+                                <?php
                                 if (isset($_POST['filtrar'])) {
                                     $carrera = $_POST['filtro'];
                                     $semestre = $_POST['semestres'];
@@ -62,36 +64,35 @@ if (isset($_SESSION['matricula'])) {
                                     if ($carrera == "ALL") {
                                         while ($filas = mysqli_fetch_assoc($sqlall)) {
                                 ?>
-                            <tr>
-                                <td>
-                                    <a href="archivos.php?id=<?php echo $filas['id'] ?>">
-                                        <?php echo $filas['A_paterno'], $filas['A_Materno'], $filas['Nombre'] ?>
+                                <tr>
+                                    <td>
+                                        <a href="archivos.php?id=<?php echo $filas['id'] ?>">
+                                            <?php echo $filas['A_paterno'], $filas['A_Materno'], $filas['Nombre'] ?>
+                                        </a>
+                                    </td>
+                                    <td> <?php echo $filas['Matricula']  ?> </td>
+                                    <td> <?php echo $filas['carrera'] ?> </td>
+                                    <td> <?php echo $filas['Contrasena']  ?> </td>
+                                    <td>
+                                        <a href="edit.php?id=<?php echo $filas['id'] ?>" class="btn btn-secondary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="delate.php?id=<?php echo $filas['id'] ?>" class="btn btn-danger">
+                                            <i class="fas fa-trash-alt"
+                                                onclick="return confirm('Esta seguro de eliminar al alumno?');"> <span
+                                                    class="glyphicon glyphicon-trash" aria-hidden="true"></span> </a>
+                                    </td>
+                                    </i>
                                     </a>
-                                </td>
-                                <td> <?php echo $filas['Matricula']  ?> </td>
-                                <td> <?php echo $filas['carrera'] ?> </td>
-                                <td> <?php echo $filas['Contrasena']  ?> </td>
-                                <td>
-                                    <a href="edit.php?id=<?php echo $filas['id'] ?>" class="btn btn-secondary">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <a href="delate.php?id=<?php echo $filas['id'] ?>" class="btn btn-danger">
-                                        <i class="fas fa-trash-alt"
-                                            onclick="return confirm('Esta seguro de eliminar al alumno?');"> <span
-                                                class="glyphicon glyphicon-trash" aria-hidden="true"></span> </a>
-                                </td>
-                                </i>
-                                </a>
 
-                                </td>
-                            </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-
             </div>
-
             <?php
                                     } else if ($carrera == "1") {
                                         while ($filas = mysqli_fetch_assoc($sql)) {
@@ -120,18 +121,12 @@ if (isset($_SESSION['matricula'])) {
             </tbody>
             </table>
     </div>
-
     </div>
-
     <?php
                                     } else if ($carrera == "2") {
                                         while ($filas = mysqli_fetch_assoc($sql)) {
-
-
         ?>
     <tr>
-
-
         <td>
             <a href="archivos.php?id=<?php echo $filas['id'] ?>">
                 <?php echo $filas['A_paterno'], $filas['A_Materno'], $filas['Nombre'] ?>
@@ -154,19 +149,14 @@ if (isset($_SESSION['matricula'])) {
     </tbody>
     </table>
     </div>
-
     </div>
-
     <?php
 
                                     } else if ($carrera == "3") {
                                         while ($filas = mysqli_fetch_assoc($sql)) {
 
-
         ?>
     <tr>
-
-
         <td>
             <a href="archivos.php?id=<?php echo $filas['id'] ?>">
                 <?php echo $filas['A_paterno'], $filas['A_Materno'], $filas['Nombre']  ?>
@@ -195,8 +185,6 @@ if (isset($_SESSION['matricula'])) {
     </main>
     </div>
 </body>
-
-
 <?php
                                     }
                                 }
@@ -204,7 +192,4 @@ if (isset($_SESSION['matricula'])) {
                                 header("location: ../index.php");
                             }
                             include("futter.php");
-
-
-
 ?>

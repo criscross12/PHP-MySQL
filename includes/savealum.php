@@ -2,6 +2,7 @@
 // Patrón para usar en expresiones regulares (admite letras acentuadas y espacios):
 $patron_texto = "/^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙ\s]+$/";
 session_start();
+
 if (isset($_POST['save'])) {
     $nombre = $_POST['nombre'];
     $AP = $_POST['AP'];
