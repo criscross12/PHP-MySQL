@@ -13,7 +13,11 @@
 </head>
 
 <body>
-    <h2>Alumons</h2>
+    <h2><?php echo $data["Nombre"]; ?></h2>
+
+    <a href="">+Agregar</a>
+    <br>
+    <br>
     <table border="1" width="80%">
         <thead>
 

@@ -1,14 +1,14 @@
-<?php include "conexion.php";
-session_start();
-$idUsuario = $_SESSION['id'];
-if (isset($_SESSION['id'])) {
-    $sql = mysqli_query($conexion, 'SELECT * FROM `alumno` where id= "' . $idUsuario . '" ');
-    $filas = mysqli_fetch_assoc($sql);
-    include("headeralum.php");
+<?php
+ include "conexion.php";
+    include "sessiones.php";
+    
+    
     $sqlEncuestas = "SELECT * FROM encuesta WHERE Status= 1";
     $res = mysqli_query($conexion, $sqlEncuestas);
     $sqlNameM = "SELECT * FROM `encuesta` INNER join materias on encuesta.Materia= materias.ID where Status=1";
     $resMa = mysqli_query($conexion, $sqlNameM);
+
+    include("headeralum.php");
 ?>
 
 <body class="text-center">
@@ -34,14 +34,28 @@ if (isset($_SESSION['id'])) {
                             <?php
             while ($mostrar = mysqli_fetch_array($resMa)) {
               $status = $mostrar['Status'];
+              $fecha = $mostrar['Fecha'];
+              $idDocente = $mostrar['Docente'];
+              $idMateria = $mostrar['Materia'];
+              $idSemestre = $mostrar['Semestre'];
+            
             ?>
                             <tr>
-                           
+
                                 <td><?php echo $mostrar['Nombre']; ?></td>
-                                <td><?php echo $mostrar['Fecha']; ?></td>
-                                <td>                            
-                                    <a href="form.php?Id_encuesta=<?php echo $mostrar['Id_encuesta'] ?>">
-                                        <i class="fas fa-pencil-alt"></i>
+                                <td><?php echo $fecha;  ?></td>
+                                <td>
+                                    <form action="form.php" method="post">
+                                        <input type="hidden" name="Id_encuesta" value="<?=$mostrar['Id_encuesta']?>">
+                                        <input type="hidden" name="iddocente" value="<?=$idDocente ?>">
+                                        <input type="hidden" name="idasignatura" value="<?=$idMateria ?>">
+                                        <input type="hidden" name="idcarrera" value="<?=$idCarrera ?>">
+                                        <input type="hidden" name="idsemestre" value="<?=$idSemestre ?>">
+                                        <input type="submit" value="contestar">
+                                    </form>
+
+                                    <!-- <a href="form.php?Id_encuesta=<?php echo $mostrar['Id_encuesta'] ?>">
+                                        <i class="fas fa-pencil-alt"></i> -->
                                 </td>
                                 <?php
                                     if ($status == "1") {
@@ -68,14 +82,3 @@ if (isset($_SESSION['id'])) {
 </body>
 
 </html>
-<?php
-
-} else {
-    include("futter.php");
-    header("location: ../index.php");
-}
-include("futter.php");
-
-
-
-?>
