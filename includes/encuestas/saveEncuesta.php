@@ -5,8 +5,8 @@ if (isset($_POST['save'])) {
     date_default_timezone_set('America/Mexico_city');
     $Docente = $_POST['Docente'];
     $Materia =  $_POST['Materia']; 
-    $status = $_POST['Status'];  
-    $fecha = date('Y-m-d H:i:s');
+    $status = 1;  
+    $fecha = date('Y-m-d');
         $sql = "INSERT INTO `encuesta` (`Docente`, `Materia`,`Fecha`, `Status`)
          VALUES ('$Docente', '$Materia','$fecha','$status')";
         $consulta = mysqli_query($conexion, $sql);

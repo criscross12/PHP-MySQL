@@ -39,7 +39,7 @@ if (isset($_SESSION['matricula'])) {
                 </div>
 
                 <div class="modal-body">
-                    <form method="POST" action="encuestas/saveEncuesta.php">                        
+                    <form method="POST" action="encuestas/saveEncuesta.php">
                         <!--   PRUEBA CON SELECT  -->
                         <div class="form-group">
                             <label class="font-weight-bold">Docente</label>
@@ -63,14 +63,14 @@ if (isset($_SESSION['matricula'])) {
                                 ?>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label class="font-weight-bold">Estatus</label>
                             <select class="form-control" name="Status" autofocus required>
                                 <option value="0">Seleccione:</option>
                                 <option value="1">Activar</option>
                                 <option value="2">Desactivar</option>                             
                             </select>
-                        </div>
+                        </div> -->
                         <!-- <div class="form-group">
                             <div class="fl">
                                 <label class="font-weight-bold">Nº de opciones:</label>
@@ -98,7 +98,7 @@ if (isset($_SESSION['matricula'])) {
         <div class="panel-heading">
             <h3 class="panel-title">Encuestas</h3>
         </div>
-        <div class="panel-body">
+        <div class="table-responsive-sm">
 
             <table class="table">
                 <thead>
@@ -115,17 +115,17 @@ if (isset($_SESSION['matricula'])) {
             while ($mostrar = mysqli_fetch_array($res)) {
               $status = $mostrar['Status'];
             ?>
-                    <tr>            
+                    <tr>
                         <td><?php echo $mostrar['Nombre'];?></td>
                         <td>
-                            <a href="editEncuesta.php?Id_encuesta= <?php echo $mostrar["Id_encuesta"]; ?>" 
+                            <a href="editEncuesta.php?Id_encuesta= <?php echo $mostrar["Id_encuesta"]; ?>"
                                 class="btn btn-info ">
                                 <i class="fas fa-edit"></i>
                         </td>
                         <td>
-                            <a href="test.php?Id_encuesta= <?php echo $mostrar["Id_encuesta"]; ?>" 
+                            <a href="test.php?Id_encuesta= <?php echo $mostrar["Id_encuesta"]; ?>"
                                 class="btn btn-info ">
-                                <i class="fas fa-file-signature"></i>                               
+                                <i class="fas fa-file-signature"></i>
                         </td>
                         <!-- ELIMINAR ARCHIVO-->
                         <td>

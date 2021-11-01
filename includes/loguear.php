@@ -1,4 +1,5 @@
-<?php include "conexion.php";
+<?php
+include "conexion.php";
 session_start();
 $matricula = $_POST['matricula'];
 $contrasena = $_POST['contrasena'];
