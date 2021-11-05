@@ -18,7 +18,7 @@ if (isset($_SESSION['matricula'])) {
                                     $sqlCarrera = "SELECT * FROM carrera";
                                     $resultCarrera = mysqli_query($conexion, $sqlCarrera);
                                     while ($filasCa = mysqli_fetch_array($resultCarrera)) {
-                                        echo '<option value="' . $filasCa["id"] . '">' . $filasCa["Nombre"] . '</option>';
+                                        echo '<option value="' . $filasCa["id"] . '">' . $filasCa["Nombre_Carrera"] . '</option>';
                                     }
                                     ?>
                             </select>
@@ -28,7 +28,7 @@ if (isset($_SESSION['matricula'])) {
                                     $sqlSemestre = "SELECT * FROM semestre";
                                     $resultCarrera = mysqli_query($conexion, $sqlSemestre);
                                     while ($filasSe = mysqli_fetch_array($resultCarrera)) {
-                                        echo '<option value="' . $filasSe["id"] . '">' . $filasSe["Semestre"] . '</option>';
+                                        echo '<option value="' . $filasSe["id"] . '">' . $filasSe["nombre_semestre"] . '</option>';
                                     }
                                     ?>
                             </select>

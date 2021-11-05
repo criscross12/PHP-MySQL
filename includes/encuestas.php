@@ -123,8 +123,7 @@ if (isset($_SESSION['matricula'])) {
                                 <i class="fas fa-edit"></i>
                         </td>
                         <td>
-                            <a href="test.php?Id_encuesta= <?php echo $mostrar["Id_encuesta"]; ?>"
-                                class="btn btn-info ">
+                            <a href="../fpdf/reporte.php" class="btn btn-info ">
                                 <i class="fas fa-file-signature"></i>
                         </td>
                         <!-- ELIMINAR ARCHIVO-->

@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-success ">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #2ECC71 ;">
         <a class="navbar-brand" href="index.php">
             <img src="../includes/UMB.jpg" width="30" height="30" class="d-inline-block align-top">
             UMB Xalatlaco
