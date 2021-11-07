@@ -62,48 +62,76 @@ class PDF extends FPDF{
         //uso de libreria para gráficos
         require ('includes/jpgraph/src/jpgraph.php');
 		require ('includes/jpgraph/src/jpgraph_bar.php');
-
+        include '../includes/conexion.php';
+        $id = $_GET['idencu'];
+        $query1= "SELECT * FROM encuesta where Id_Encuesta = $id";
+        $res = $conexion->query($query1);
+        $row = $res->fetch_assoc();
+        $idDocente = $row['Docente'];
+        $idMateria = $row['Materia'];
+        $fecha1= $row['Fecha'];
+        $fecha2 = $row['FechaFin'];
+        $gpo = $row['Grupo'];
+        $query2= "SELECT * FROM maestros where ID = '$idDocente'";
+        $res2 = $conexion->query($query2);
+        $row2 = $res2->fetch_assoc();
+        $docente = $row2['Nombre_Docente'] . " " .$row2['Ap_Paterno']. " " .$row2['Ap_Materno'];
+        $cvedocte = $row2['Matricula'];
+        $query3= "SELECT * FROM materias where ID = '$idMateria'";
+        $res3 = $conexion->query($query3);
+        $row3 = $res3->fetch_assoc();
+        $asignatura = $row3['Nombre'];
         //avriables con los valores necesarios para el reporte
-        $fecha1="01/10/2021";
-        $fecha2="31/10/2021";
-        $docente="ANIBAL ANDRES ARELLANO APARICIO";
-        $asignatura="FUNDAMENTOS DE PROGRAMACIÓN";
+        // $fecha1="01/10/2021";
+        // $fecha2="31/10/2021";
+        // $docente="ANIBAL ANDRES ARELLANO APARICIO";
+
+        // $asignatura="FUNDAMENTOS DE PROGRAMACIÓN";
         $carrera="ISC";
         $sem="PRIMERO";
-        $cvedocte="04213";
-        $gpo="22SC111";
+        // $cvedocte="04213";
+        // $gpo="22SC111";
         $periodo="20-21/1";
-        $tamues=11;
+        // $tamues=11;
         $hora = new DateTime("now", new DateTimeZone('America/Mexico_City'));
         $fechahoy= $hora->format("d-m-Y");
         $coordinador="I.S.C. Anibal Arellano Aparicio";
 
+        $query4= "SELECT COUNT(Id_encuesta) as contador FROM encuesta_respuestas where Id_encuesta = '$id'";
+        $res4 = $conexion->query($query4);
+        $row4 = $res4->fetch_assoc();
+        $tamues = $row4['contador'];
+
+        $query5= "SELECT AVG(P1) as PR1,AVG(P2) as PR2,AVG(P3) as PR3,AVG(P4) as PR4,AVG(P5) as PR5,AVG(P6) as PR6,AVG(P7) as PR7,AVG(P7) as PR8,AVG(P9) as PR9,AVG(P10) as PR10,AVG(P11) as PR11,AVG(P12) as PR12,AVG(P13) as PR13,AVG(P14) as PR14,AVG(P15) as PR15,AVG(P16) as PR16,AVG(P17) as PR17,AVG(P18) as PR18,AVG(P19) as PR19,AVG(P20) as PR20,AVG(P21) as PR21,AVG(P22) as PR22,AVG(P23) as PR23,AVG(P24) as PR24,AVG(Promedio) as Prom FROM encuesta_respuestas where Id_encuesta = '$id'";
+        $res5 = $conexion->query($query5);
+        $row5 = $res5->fetch_assoc();
+        
         //valores para la gráfica
-        $p1=3.5;
-        $p2=3.8;
-        $p3=4.1;
-        $p4=4.0;
-        $p5=4.1;
-        $p6=5.0;
-        $p7=3.5;
-        $p8=3.8;
-        $p9=3.6;
-        $p10=2.4;
-        $p11=3.5;
-        $p12=3.8;
-        $p13=4.1;
-        $p14=4.0;
-        $p15=4.1;
-        $p16=5.0;
-        $p17=3.5;
-        $p18=3.8;
-        $p19=3.6;
-        $p20=2.4;
-        $p21=3.5;
-        $p22=3.8;
-        $p23=4.1;
-        $p24=4.0;
-        $prom=4.1;
+        $p1=$row5['PR1']; 
+        $p2=$row5['PR2'];
+        $p3=$row5['PR3'];
+        $p4=$row5['PR4'];
+        $p5=$row5['PR5'];
+        $p6=$row5['PR6'];
+        $p7=$row5['PR7'];
+        $p8=$row5['PR8'];
+        $p9=$row5['PR9'];
+        $p10=$row5['PR10'];
+        $p11=$row5['PR11'];
+        $p12=$row5['PR12'];
+        $p13=$row5['PR13'];
+        $p14=$row5['PR14'];
+        $p15=$row5['PR15'];
+        $p16=$row5['PR16'];
+        $p17=$row5['PR17'];
+        $p18=$row5['PR18'];
+        $p19=$row5['PR19'];
+        $p20=$row5['PR20'];
+        $p21=$row5['PR21'];
+        $p22=$row5['PR22'];
+        $p23=$row5['PR23'];
+        $p24=$row5['PR24'];
+        $prom=$row5['Prom'];
 
         //area de tabla de datos
 

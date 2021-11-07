@@ -116,14 +116,15 @@ if (isset($_SESSION['matricula'])) {
               $status = $mostrar['Status'];
             ?>
                     <tr>
-                        <td><?php echo $mostrar['Nombre'];?></td>
+                        <td><?php echo utf8_encode($mostrar['Nombre']);?></td>
                         <td>
                             <a href="editEncuesta.php?Id_encuesta= <?php echo $mostrar["Id_encuesta"]; ?>"
                                 class="btn btn-info ">
                                 <i class="fas fa-edit"></i>
                         </td>
                         <td>
-                            <a href="../fpdf/reporte.php" class="btn btn-info ">
+                            <a href="../fpdf/reporte.php?idencu=<?php echo $mostrar["Id_encuesta"] ?>"
+                                class="btn btn-info ">
                                 <i class="fas fa-file-signature"></i>
                         </td>
                         <!-- ELIMINAR ARCHIVO-->
