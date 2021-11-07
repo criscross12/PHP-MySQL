@@ -4,7 +4,7 @@ session_start();
 $matricula = $_POST['matricula'];
 $contrasena = $_POST['contrasena'];
 $q = "SELECT  COUNT(*) as contar from alumno where matricula = '$matricula' and contrasena = '$contrasena' ";
-$sq = "SELECT  COUNT(*) as conta from ce where matricula = '$matricula' and contraseña = '$contrasena' ";
+$sq = "SELECT  COUNT(*) as conta from ce where matricula = '$matricula' and contrasena = '$contrasena' ";
 $queryCC = "SELECT COUNT(*) as contador from administradores where Matricula='$matricula' and password = '$contrasena' ";
 $consulta = mysqli_query($conexion,$q);
 $array = mysqli_fetch_array($consulta);
@@ -23,7 +23,7 @@ if($array['contar']>0 ){
 }else if($proy['conta']>0 )
 {
     $_SESSION['matricula']= $matricula;
-    $sqlid = "SELECT id FROM `ce` where matricula = '$matricula' and contraseña = '$contrasena' ";
+    $sqlid = "SELECT id FROM `ce` where matricula = '$matricula' and contrasena = '$contrasena' ";
     $consultid = mysqli_query($conexion,$sqlid);
     $idusuario = mysqli_fetch_row($consultid)[0];
     $_SESSION['id'] = $idusuario;   
