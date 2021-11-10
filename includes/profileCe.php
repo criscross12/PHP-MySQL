@@ -8,7 +8,7 @@ if (isset($_SESSION['matricula'])) {
     $nombre = $filas["Nombre"];
     $ap_paterno = $filas["Ap_Paterno"];
     $ap_materno = $filas["Ap_Materno"];
-    $Contra = $filas["Contraseña"];
+    $Contra = $filas["Contrasena"];
     $Matricula = $filas["Matricula"];
   include("header.php");
 ?>
@@ -35,7 +35,7 @@ if (isset($_SESSION['matricula'])) {
                             <div class="col-sm-6">
                                 <p class="font-weight-bold">Nombre:</p>
                                 <h6 class="text-muted">
-                                    <?php echo strtoupper($nombre),"  ", strtoupper($ap_paterno), "  ", strtoupper($ap_materno) ?>
+                                    <?php echo utf8_encode(strtoupper($nombre)),"  ",utf8_encode( strtoupper($ap_paterno)), "  ",utf8_encode( strtoupper($ap_materno)) ?>
                                 </h6>
                                 <p class="font-weight-bold">Contraseña:</p>
                                 <h6 class="text-muted"><?php echo $Contra ?></h6>

@@ -10,27 +10,27 @@ if (isset($_SESSION['matricula'])) {
     $Ap_Paterno = $filas['Ap_Paterno'];
     $Ap_Materno = $filas['Ap_Materno'];
     $matricula = $filas['Matricula'];
-    $password = $filas['Contraseña'];
+    $password = $filas['Contrasena'];
     ?>
 <?php include 'header.php' ?>
 <div class="container p-4">
     <div class="row">
         <div class="col-md-4 mx-auto">
             <div class="card card-body">
-                <form action="../includes/../includes/CE_CRUD/UptadeProfileCe.php" method="POST">
+                <form action="CE_CRUD/UptadeProfileCe.php" method="POST">
                     <div class="form-group">
                         <label class="font-weight-bold">Nombre</label>
-                        <input name="nombre" type="text" class="form-control" value="<?= $nombre; ?>"
+                        <input name="nombre" type="text" class="form-control" value="<?= utf8_encode($nombre); ?>"
                             placeholder="Update Nombre">
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Apellido Paterno</label>
-                        <input name="AP" type="text" class="form-control" value="<?= $Ap_Paterno; ?>"
+                        <input name="AP" type="text" class="form-control" value="<?= utf8_encode($Ap_Paterno); ?>"
                             placeholder="Update Nombre">
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Apellido Materno</label>
-                        <input name="AM" type="text" class="form-control" value="<?=$Ap_Materno ?>"
+                        <input name="AM" type="text" class="form-control" value="<?=utf8_encode($Ap_Materno)  ?>"
                             placeholder="Update Nombre">
                     </div>
                     <div class="form-group">

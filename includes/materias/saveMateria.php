@@ -2,7 +2,7 @@
 session_start();
 $patron_texto = "/^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙ\s]+$/";
 if (isset($_POST['save'])) {
-    $NombreMateria = $_POST['NombreMateria'];
+    $NombreMateria = utf8_encode($_POST['NombreMateria']);
     $Carrera = $_POST['Carrera'];
     $Semestre =  $_POST['Semestre'];
     if (preg_match($patron_texto, $NombreMateria)) {

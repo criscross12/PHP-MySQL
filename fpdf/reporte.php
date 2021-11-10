@@ -81,12 +81,6 @@ class PDF extends FPDF{
         $res3 = $conexion->query($query3);
         $row3 = $res3->fetch_assoc();
         $asignatura = $row3['Nombre'];
-        //avriables con los valores necesarios para el reporte
-        // $fecha1="01/10/2021";
-        // $fecha2="31/10/2021";
-        // $docente="ANIBAL ANDRES ARELLANO APARICIO";
-
-        // $asignatura="FUNDAMENTOS DE PROGRAMACIÓN";
         $carrera="ISC";
         $sem="PRIMERO";
         // $cvedocte="04213";
@@ -105,7 +99,7 @@ class PDF extends FPDF{
         $query5= "SELECT AVG(P1) as PR1,AVG(P2) as PR2,AVG(P3) as PR3,AVG(P4) as PR4,AVG(P5) as PR5,AVG(P6) as PR6,AVG(P7) as PR7,AVG(P7) as PR8,AVG(P9) as PR9,AVG(P10) as PR10,AVG(P11) as PR11,AVG(P12) as PR12,AVG(P13) as PR13,AVG(P14) as PR14,AVG(P15) as PR15,AVG(P16) as PR16,AVG(P17) as PR17,AVG(P18) as PR18,AVG(P19) as PR19,AVG(P20) as PR20,AVG(P21) as PR21,AVG(P22) as PR22,AVG(P23) as PR23,AVG(P24) as PR24,AVG(Promedio) as Prom FROM encuesta_respuestas where Id_encuesta = '$id'";
         $res5 = $conexion->query($query5);
         $row5 = $res5->fetch_assoc();
-        
+         
         //valores para la gráfica
         $p1=$row5['PR1']; 
         $p2=$row5['PR2'];
@@ -138,7 +132,7 @@ class PDF extends FPDF{
         $this->Ln(10);
         $this->SetFont('Arial','',10);
         $this->Cell(15.4,5,"");
-        $this->MultiCell(168,5,utf8_decode("  A continuación, se presentan la información recopilada en el periodo de ".$fecha1." al ".$fecha2." del desempeño laboral realizado al docente ".$docente." por parte de los alumnos al cual imparte la asignatura ".$asignatura."."),0,"J");
+        $this->MultiCell(168,5,utf8_decode("  A continuación, se presentan la información recopilada en el periodo de ".$fecha1." al ".$fecha2." del desempeño laboral realizado al docente ".utf8_encode($docente)." por parte de los alumnos al cual imparte la asignatura ".utf8_encode($asignatura)."."),0,"J");
         $this->Ln(5);
         $this->SetFont('Arial','',10);
         $this->Cell(15.4,5,"");
@@ -164,7 +158,7 @@ class PDF extends FPDF{
         $this->Cell(15.4,5,"");
         $this->Cell(30,5,utf8_decode("Nombre Docente:"),1,0,"L",0);
         $this->SetFont('Arial','B',10);
-        $this->CellFitSpace(54,5,utf8_decode($docente),1,0,"L",0);
+        $this->CellFitSpace(54,5,($docente),1,0,"L",0);
         $this->SetFont('Arial','',10);
         $this->Cell(30,5,utf8_decode("Fecha Reporte:"),1,0,"L",0);
         $this->SetFont('Arial','B',10);
@@ -329,63 +323,95 @@ class PDF extends FPDF{
         $this->SetFont('Arial','B',10);
         $this->Cell(15.4,5,"");
         $this->Cell(190,5,utf8_decode("Sección 1: Sobre la Clase."),0,1,"J",0);
-        $this->SetFont('Arial','',10);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P1:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P2:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P3:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P4:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P5:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P6:"),0,1,"J",0);
+        //Preguntas
+        $sql = "SELECT * FROM preguntas where categoria=1";
+        $pre = mysqli_query($conexion, $sql);
+        $i = 1;
+        while ($mostrarP = mysqli_fetch_array($pre)){
+            $this->SetFont('Arial','',10);
+            $this->Cell(15.4,5,"");
+            $this->Cell(190,5,("P$i: ".$mostrarP['Texto']),0,1,"J",0);
+            $i++;
+        }
         $this->SetFont('Arial','B',10);
         $this->Cell(15.4,5,"");
         $this->Cell(190,5,utf8_decode("Sección 2: Actitud del Docente."),0,1,"J",0);
-        $this->SetFont('Arial','',10);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P7:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P8:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P9:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P10:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P11:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P12:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P13:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P14:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P15:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P16:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P17:"),0,1,"J",0);
+        $sql = "SELECT * FROM preguntas where categoria=2";
+        $pre = mysqli_query($conexion, $sql);
+        $i = 7;
+        while ($mostrarP = mysqli_fetch_array($pre)){
+            $this->SetFont('Arial','',10);
+            $this->Cell(15.4,5,"");
+            $this->Cell(190,5,("P$i: ".$mostrarP['Texto']),0,1,"J",0);
+            $i++;
+        }
         $this->SetFont('Arial','B',10);
         $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("Sección 3: Actividades y Evaluación."),0,1,"J",0);
-        $this->SetFont('Arial','',10);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P18:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P19:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P20:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P21:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P22:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P23:"),0,1,"J",0);
-        $this->Cell(15.4,5,"");
-        $this->Cell(190,5,utf8_decode("P24:"),0,1,"J",0);
+        $this->Cell(190,5,utf8_decode("Sección 3: Actividades y Evaluación."),0,1,"J",0); 
+        $sql = "SELECT * FROM preguntas where categoria=3";
+        $pre = mysqli_query($conexion, $sql);
+        $i = 18;
+        while ($mostrarP = mysqli_fetch_array($pre)){
+            $this->SetFont('Arial','',10);
+            $this->Cell(15.4,5,"");
+            $this->Cell(190,5,"P$i: ".$mostrarP['Texto'],0,1,"J",0);
+            $i++;
+        }
+        
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P2: $docente"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P3:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P4:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P5:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P6:"),0,1,"J",0);
+        // $this->SetFont('Arial','B',10);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("Sección 2: Actitud del Docente."),0,1,"J",0);
+        // $this->SetFont('Arial','',10);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P7:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P8:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P9:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P10:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P11:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P12:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P13:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P14:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P15:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P16:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P17:"),0,1,"J",0);
+        // $this->SetFont('Arial','B',10);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("Sección 3: Actividades y Evaluación."),0,1,"J",0);
+        // $this->SetFont('Arial','',10);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P18:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P19:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P20:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P21:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P22:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P23:"),0,1,"J",0);
+        // $this->Cell(15.4,5,"");
+        // $this->Cell(190,5,utf8_decode("P24:"),0,1,"J",0);
     }
     //funcion para ajustar texto
 	function CellFit($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link='', $scale=false, $force=true)

@@ -37,7 +37,7 @@ $Anio  = $hoy->format("Y");
 
 <body class="text-center">
     <main role="main" class="inner cover">
-        <h1 class="cover-heading">Encuesta de <?=$nombre_materia?></h1>
+        <h1 class="cover-heading">Encuesta de <?=utf8_encode($nombre_materia)?></h1>
         <main role="main" class="container">
             <div class="panel panel-primary">
                 <div class="alert alert-success" role="alert" style="text-align: justify;">
@@ -46,7 +46,7 @@ $Anio  = $hoy->format("Y");
                     correspondiente al Docente para mejorar las técnicas y métodos utilizados en la cátedra. </div>
                 <div class="alert alert-success" role="alert" style="text-align: justify;">
                     Indicaciones: Contesta lo siguiente a fin de evaluar el desempeño del docente:
-                    <?=$nombre_docente ?></div>
+                    <?=utf8_encode($nombre_docente) ?></div>
                 <div class="panel-body">
                     <div class="alert alert-primary" role="alert">
                         Sobre las clases
@@ -69,12 +69,7 @@ $Anio  = $hoy->format("Y");
                             ?>
                                 <tr>
 
-                                    <td><?php echo $mostrarP['Texto'] ?></td>
-                                    <td>
-                                        <input class="form-check-input" type="radio"
-                                            name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1" value="0"
-                                            checked>
-                                    </td>
+                                    <td><?php echo utf8_encode($mostrarP['Texto']) ?></td>
                                     <td>
                                         <input class="form-check-input" type="radio"
                                             name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1" value="1">
@@ -90,6 +85,11 @@ $Anio  = $hoy->format("Y");
                                     <td>
                                         <input class="form-check-input" type="radio"
                                             name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1" value="4">
+                                    </td>
+                                    <td>
+                                        <input class="form-check-input" type="radio"
+                                            name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1" value="5"
+                                            checked>
                                     </td>
                                 <tr> <input TYPE="HIDDEN" NAME="pre<?php echo $mostrarP[0] ?>"
                                         value="<?php echo $mostrarP[0] ?>"></tr>

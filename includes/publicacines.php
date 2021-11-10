@@ -42,7 +42,7 @@
             ?>
                             <tr>
 
-                                <td><?php echo $mostrar['Nombre']; ?></td>
+                                <td><?php echo utf8_encode($mostrar['Nombre']); ?></td>
                                 <td><?php echo $fecha;  ?></td>
                                 <td>
                                     <form action="form.php" method="post">
