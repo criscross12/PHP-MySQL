@@ -24,13 +24,14 @@ if (isset($_SESSION['id'])) {
     $p4 = $_POST['Pregunta4'];
     $p5 = $_POST['Pregunta5'];
     $p6 = $_POST['Pregunta6'];
+    $prom1 = ($p1+$p2+$p3+$p4+$p5+$p6)/5;
     $sqlinsert1 = "UPDATE encuesta_respuestas set P1=" . $p1 . ", P2=" . $p2 . ",  P3=" . $p3 . ",  P4=" . $p4 . " ,  P5=" . $p5 . ",P6= " . $p6 . "  where IdEncuestaRes=$idEncuestaRes";
     $conexion->query($sqlinsert1) || die("Error: ");
     ?>
 
 <body class="text-center">
     <main role="main" class="inner cover">
-        <h1 class="cover-heading">Encuesta de <?= $nombre_materia ?></h1>
+        <h1 class="cover-heading">Encuesta de <?= utf8_encode($nombre_materia) ?></h1>
         <main role="main" class="container">
             <div class="panel panel-primary">
                 <div class="alert alert-success" role="alert" style="text-align: justify;">
@@ -39,7 +40,7 @@ if (isset($_SESSION['id'])) {
                     correspondiente al Docente para mejorar las técnicas y métodos utilizados en la cátedra. </div>
                 <div class="alert alert-success" role="alert" style="text-align: justify;">
                     Indicaciones: Contesta lo siguiente a fin de evaluar el desempeño del docente:
-                    <?= $nombre_docente ?></div>
+                    <?= utf8_encode($nombre_docente) ?></div>
                 <div class="panel-body">
                     <div class="alert alert-primary" role="alert">
                         Sobre actitud
@@ -62,15 +63,11 @@ if (isset($_SESSION['id'])) {
                                     ?>
                                 <tr>
 
-                                    <td><?php echo $mostrarP['Texto'] ?></td>
+                                    <td><?php echo utf8_encode($mostrarP['Texto']) ?></td>
                                     <td>
                                         <input class="form-check-input" type="radio"
-                                            name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1" value="0"
+                                            name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1" value="1"
                                             checked>
-                                    </td>
-                                    <td>
-                                        <input class="form-check-input" type="radio"
-                                            name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1" value="1">
                                     </td>
                                     <td>
                                         <input class="form-check-input" type="radio"
@@ -84,6 +81,10 @@ if (isset($_SESSION['id'])) {
                                         <input class="form-check-input" type="radio"
                                             name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1" value="4">
                                     </td>
+                                    <td>
+                                        <input class="form-check-input" type="radio"
+                                            name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1" value="5">
+                                    </td>
                                 <tr> <input TYPE="HIDDEN" NAME="pre<?php echo $mostrarP[0] ?>"
                                         value="<?php echo $mostrarP[0] ?>"></tr>
                                 </tr>
@@ -92,6 +93,7 @@ if (isset($_SESSION['id'])) {
                                 <tr> <input TYPE="HIDDEN" NAME="Nombre_materia" value="<?= $nombre_materia ?>"></tr>
                                 <tr> <input TYPE="HIDDEN" NAME="Nombre_docente" value="<?= $nombre_docente ?>"></tr>
                                 <tr> <input TYPE="HIDDEN" NAME="Id_Encuesta_Res" value="<?= $idEncuestaRes ?>"></tr>
+                                <tr> <input TYPE="HIDDEN" NAME="Prom1" value="<?= $prom1 ?>"></tr>
                             </tbody>
                         </table>
                         <div class="container">

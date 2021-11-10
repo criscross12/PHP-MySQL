@@ -55,7 +55,7 @@ $resultCarrera = mysqli_query($conexion, $sqlCarrera);
                             <option value="0">Seleccione:</option>
                             <?php
                             while ($filasCa = mysqli_fetch_array($resultCarrera)) {
-                                echo '<option value="' . $filasCa["id"] . '">' . $filasCa["Nombre"] . '</option>';
+                                echo '<option value="' . $filasCa["id"] . '">' . utf8_encode($filasCa["Nombre_Carrera"]) . '</option>';
                             }
                             ?>
                         </select>
@@ -68,7 +68,7 @@ $resultCarrera = mysqli_query($conexion, $sqlCarrera);
                             <option value="0">Seleccione:</option>
                             <?php
                             while ($filas = mysqli_fetch_array($result)) {
-                                echo '<option value="' . $filas["id"] . '">' . $filas["Semestre"] . '</option>';
+                                echo '<option value="' . $filas["id"] . '">' . utf8_encode($filas["nombre_semestre"]) . '</option>';
                             }
                             ?>
                         </select>

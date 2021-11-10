@@ -18,6 +18,7 @@ if (isset($_SESSION['id'])) {
    $nombre_materia = $_POST['Nombre_materia'];
 
    //Resultados de la encuesta: Primera parte
+   $prom1 = $_POST['Prom1'];
    $p7 = $_POST['Pregunta7'];
    $p8 = $_POST['Pregunta8'];
    $p9 = $_POST['Pregunta9'];
@@ -29,13 +30,15 @@ if (isset($_SESSION['id'])) {
    $p15 = $_POST['Pregunta15'];
    $p16 = $_POST['Pregunta16'];
    $p17 = $_POST['Pregunta17'];
+   $prom2 = ($p7+$p8+$p9+$p10+$p11+$p12+$p13+$p14+$p15+$p16+$p17)/5;
+   $prom3 = $prom1+$prom2;
    $sqlinsert1 = "UPDATE encuesta_respuestas set P7=" . $p7 . ", P8=" . $p8 . ",  P9=" . $p9 . ",  P10=" . $p10 . " ,  P11=" . $p11 . ",P12= " . $p12 . ",P13 =". $p13 .", P14= ".$p14.", P15=".$p15.", P16=".$p16.",P17= ".$p17."  where IdEncuestaRes=$idEncuestaRes";
    $conexion->query($sqlinsert1) || die("Error: ");
 ?>
 
 <body class="text-center">
     <main role="main" class="inner cover">
-        <h1 class="cover-heading">Encuesta de <?=$nombre_materia ?></h1>
+        <h1 class="cover-heading">Encuesta de <?=utf8_encode($nombre_materia) ?></h1>
         <main role="main" class="container">
             <div class="panel panel-primary">
                 <div class="alert alert-success" role="alert" style="text-align: justify;">
@@ -44,7 +47,7 @@ if (isset($_SESSION['id'])) {
                     correspondiente al Docente para mejorar las técnicas y métodos utilizados en la cátedra. </div>
                 <div class="alert alert-success" role="alert" style="text-align: justify;">
                     Indicaciones: Contesta lo siguiente a fin de evaluar el desempeño del docente:
-                    <?=$nombre_docente?></div>
+                    <?=utf8_encode($nombre_docente)?></div>
                 <div class="panel-body">
                     <div class="alert alert-primary" role="alert">
                         Sobre actividades y evaluación
@@ -67,12 +70,7 @@ if (isset($_SESSION['id'])) {
                             ?>
                                 <tr>
 
-                                    <td><?php echo $mostrarP['Texto'] ?></td>
-                                    <td>
-                                        <input class="form-check-input" type="radio"
-                                            name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1" value="0"
-                                            checked>
-                                    </td>
+                                    <td><?php echo utf8_encode($mostrarP['Texto']) ?></td>
                                     <td>
                                         <input class="form-check-input" type="radio"
                                             name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1" value="1">
@@ -87,7 +85,12 @@ if (isset($_SESSION['id'])) {
                                     </td>
                                     <td>
                                         <input class="form-check-input" type="radio"
-                                            name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1" value="4">
+                                            name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1" value="4"
+                                            checked>
+                                    </td>
+                                    <td>
+                                        <input class="form-check-input" type="radio"
+                                            name="Pregunta<?php echo $mostrarP[0] ?>" id="flexRadioDefault1" value="5">
                                     </td>
                                 <tr> <input TYPE="HIDDEN" NAME="pre<?php echo $mostrarP[0] ?>"
                                         value="<?php echo $mostrarP[0] ?>"></tr>
@@ -97,6 +100,7 @@ if (isset($_SESSION['id'])) {
                                 <tr> <input TYPE="HIDDEN" NAME="Nombre_materia" value="<?= $nombre_materia ?>"></tr>
                                 <tr> <input TYPE="HIDDEN" NAME="Nombre_docente" value="<?= $nombre_docente ?>"></tr>
                                 <tr> <input TYPE="HIDDEN" NAME="Id_Encuesta_Res" value="<?= $idEncuestaRes ?>"></tr>
+                                <tr> <input TYPE="HIDDEN" NAME="Prom3" value="<?= $prom3 ?>"></tr>
                             </tbody>
                         </table>
                         <div class="container">

@@ -16,7 +16,7 @@ if (isset($_SESSION['id'])) {
     $idEncuestaRes = $_POST['Id_Encuesta_Res'];
     $nombre_docente = $_POST['Nombre_docente'];
     $nombre_materia = $_POST['Nombre_materia'];
-
+    $prom3 = $_POST['Prom3'];
     //Resultados de la encuesta: Primera parte
     $p18 = $_POST['Pregunta18'];
     $p19 = $_POST['Pregunta19'];
@@ -25,7 +25,9 @@ if (isset($_SESSION['id'])) {
     $p22 = $_POST['Pregunta22'];
     $p23 = $_POST['Pregunta23'];
     $p24 = $_POST['Pregunta24'];
-    $sqlinsert1 = "UPDATE encuesta_respuestas set  P18=" . $p18 . ",  P19=" . $p19 . ",  P20=" . $p20 . " ,  P21=" . $p21 . ",P22= " . $p22 . ",P23 =" . $p23 . ", P24= " . $p24 . " where IdEncuestaRes=$idEncuestaRes";
+    $prom4 = ($p18+$p19+$p20+$p21+$p22+$p23+$p24)/5;
+    $promediofinal = ($prom3+$prom4)/5;
+    $sqlinsert1 = "UPDATE encuesta_respuestas set  P18=" . $p18 . ",  P19=" . $p19 . ",  P20=" . $p20 . " ,  P21=" . $p21 . ",P22= " . $p22 . ",P23 =" . $p23 . ", P24= " . $p24 . " ,Promedio = ".$promediofinal." WHERE IdEncuestaRes=$idEncuestaRes";
     $conexion->query($sqlinsert1) || die("Error: ");
     ?>
 

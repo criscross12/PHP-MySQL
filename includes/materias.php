@@ -11,7 +11,7 @@ if (isset($_SESSION['matricula'])) {
 <body class="">
     <div class="container p-16">
         <hr style="margin-top:20px;margin-bottom: 20px; ">
-        <h4 class="ml-5">Registro de Materias</h4>
+        <h4 class="ml-5">Registro de materias</h4>
         <div class="row">
             <div class="col-md-4">
                 <div class="card card-body">
@@ -26,7 +26,7 @@ if (isset($_SESSION['matricula'])) {
                                 <option value="0">Seleccione:</option>
                                 <?php
                                     while ($filasCa = mysqli_fetch_array($resultCarrera)) {
-                                        echo '<option value="' . $filasCa["id"] . '">' . $filasCa["Nombre"] . '</option>';
+                                        echo '<option value="' . $filasCa["id"] . '">' . utf8_encode($filasCa["Nombre_Carrera"]) . '</option>';
                                     }
                                     ?>
                             </select>
@@ -39,7 +39,7 @@ if (isset($_SESSION['matricula'])) {
                                 <option value="0">Seleccione:</option>
                                 <?php
                                     while ($filas = mysqli_fetch_array($result)) {
-                                        echo '<option value="' . $filas["id"] . '">' . $filas["Semestre"] . '</option>';
+                                        echo '<option value="' . $filas["id"] . '">' . utf8_encode($filas["nombre_semestre"]) . '</option>';
                                     }
                                     ?>
                             </select>
@@ -75,11 +75,11 @@ if (isset($_SESSION['matricula'])) {
             <tr>
                 <td>
                     <a>
-                        <?php echo $NombreMateria ?>
+                        <?php echo utf8_encode($NombreMateria) ?>
                     </a>
                 </td>
-                <td> <?php echo $Carrera ?> </td>
-                <td> <?php echo $Semestre  ?> </td>
+                <td> <?php echo utf8_encode($Carrera) ?> </td>
+                <td> <?php echo utf8_encode($Semestre)  ?> </td>
                 <td>
                     <a href="editMateria.php?id=<?php echo $filas['id']; ?>" class="btn btn-secondary">
                         <i class="fas fa-edit"></i>

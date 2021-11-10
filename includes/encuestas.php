@@ -47,7 +47,7 @@ if (isset($_SESSION['matricula'])) {
                                 <option value="0">Seleccione:</option>
                                 <?php
                                 while ($filasCa = mysqli_fetch_array($resultMaestros)) {
-                                    echo '<option value="' . $filasCa["ID"] . '">' . $filasCa["Nombre_Docente"] . '</option>';
+                                    echo '<option value="' . $filasCa["ID"] . '">' . utf8_encode($filasCa["Nombre_Docente"]) . '</option>';
                                 }
                                 ?>
                             </select>
@@ -58,7 +58,7 @@ if (isset($_SESSION['matricula'])) {
                                 <option value="0">Seleccione:</option>
                                 <?php
                                 while ($filasMa = mysqli_fetch_array($resultMaterias)) {
-                                    echo '<option value="' . $filasMa["ID"] . '">' . $filasMa["Nombre"] . '</option>';
+                                    echo '<option value="' . $filasMa["ID"] . '">' . utf8_encode($filasMa["Nombre"]) . '</option>';
                                 }
                                 ?>
                             </select>
